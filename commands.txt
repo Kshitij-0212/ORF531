@@ -1,0 +1,2 @@
+CC=gcc-14 CXX=g++-14 cmake -S . -B build
+pip install -e pyorflib

@@ -1,0 +1,14 @@
+numpy
+scipy
+pandas
+polars
+statsmodels
+scikit-learn
+matplotlib
+seaborn
+plotnine
+jupyter
+jupyterlab
+tabulate
+tqdm
+pybind11

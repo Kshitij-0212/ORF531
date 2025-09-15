@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/kshitij/ORF531/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-14 -I/home/kshitij/ORF531/orflib-0.1.0/orflib/.. -fPIC -Wno-deprecated-declarations -Wno-attributes -g -std=gnu++20 -fPIC -o orflib/CMakeFiles/orflib.dir/empty.cpp.o -c /home/kshitij/ORF531/orflib-0.1.0/orflib/empty.cpp",
+  "file": "/home/kshitij/ORF531/orflib-0.1.0/orflib/empty.cpp",
+  "output": "orflib/CMakeFiles/orflib.dir/empty.cpp.o"
+},
+{
+  "directory": "/home/kshitij/ORF531/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-14 -DNPY_NO_DEPRECATED_API -Dpyorflib_EXPORTS -I/home/kshitij/ORF531/orflib-0.1.0/pyorflib/.. -I/home/kshitij/miniconda3/envs/orf531/include/python3.12 -I/home/kshitij/miniconda3/envs/orf531/lib/python3.12/site-packages/numpy/_core/include -fPIC -Wno-deprecated-declarations -Wno-attributes -g -std=gnu++20 -fPIC -o pyorflib/CMakeFiles/pyorflib.dir/pymodule.cpp.o -c /home/kshitij/ORF531/orflib-0.1.0/pyorflib/pymodule.cpp",
+  "file": "/home/kshitij/ORF531/orflib-0.1.0/pyorflib/pymodule.cpp",
+  "output": "pyorflib/CMakeFiles/pyorflib.dir/pymodule.cpp.o"
+}
+]
