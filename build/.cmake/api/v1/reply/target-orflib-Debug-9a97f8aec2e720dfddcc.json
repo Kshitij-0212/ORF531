@@ -1,0 +1,110 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "/home/kshitij/ORF531/orflib-0.1.0/lib/liborflib-gd.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_compile_options",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"orflib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-fPIC -Wno-deprecated-declarations -Wno-attributes -g -std=gnu++20"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fPIC"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/kshitij/ORF531/orflib-0.1.0/orflib/.."
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"id" : "orflib::@a9d0309fb4a4abacc8ed",
+	"name" : "orflib",
+	"nameOnDisk" : "liborflib-gd.a",
+	"paths" : 
+	{
+		"build" : "orflib",
+		"source" : "orflib"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "orflib/empty.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

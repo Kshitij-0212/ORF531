@@ -1,0 +1,6 @@
+# ninja log v6
+1	2	1757976783024192122	clean	a31eedcededa8236
+1	71	1757976783064192765	orflib/CMakeFiles/orflib.dir/empty.cpp.o	b1f45b291acce94e
+71	78	1757976783136193922	/home/kshitij/ORF531/orflib-0.1.0/lib/liborflib-gd.a	11859d588a2a0507
+1	285	1757976783064192765	pyorflib/CMakeFiles/pyorflib.dir/pymodule.cpp.o	78d71470529caa55
+286	311	1757976783352197394	/home/kshitij/ORF531/orflib-0.1.0/pyorflib/orflib/pyorflib.so	1a722bfe51e48ea5

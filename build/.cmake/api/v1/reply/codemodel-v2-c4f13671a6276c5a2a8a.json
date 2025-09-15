@@ -1,0 +1,101 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "orflib",
+					"jsonFile" : "directory-orflib-Debug-ebe311e6f64a3923e45e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "orflib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "pyorflib",
+					"jsonFile" : "directory-pyorflib-Debug-83e9be6b5932c3bd3b23.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "pyorflib",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "orflib",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "orflib::@a9d0309fb4a4abacc8ed",
+					"jsonFile" : "target-orflib-Debug-9a97f8aec2e720dfddcc.json",
+					"name" : "orflib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "pyorflib::@4db69cbb5f7b23da19ba",
+					"jsonFile" : "target-pyorflib-Debug-d95d66c73a583781a9f2.json",
+					"name" : "pyorflib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/kshitij/ORF531/build",
+		"source" : "/home/kshitij/ORF531/orflib-0.1.0"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
