@@ -3,9 +3,10 @@
 @brief Python callable function registration and module definition
 */
 
-#include "orflib/defines.hpp"
+#include <orflib/defines.hpp>
 #include "pytestfunc.hpp"
 #include "pyfunctions0.hpp"
+#include "pyfunctions1.hpp"
 
 static PyMethodDef PyOrflibMethods[] = 
 {
@@ -26,7 +27,14 @@ static PyMethodDef PyOrflibMethods[] =
   { "version", pyOrfVersion, METH_VARARGS, "orflib library version"},
   { "sayHello", pyOrfSayHello, METH_VARARGS, "says hello"},
   { "outerProd", pyOrfOuterProd, METH_VARARGS, "outproduct of two vectors"},
-  { "polyProd", pyOrfPolyProd, METH_VARARGS, "outproduct of two polynomials"},
+  { "erf", pyOrfErf, METH_VARARGS, "the value of the error function." },
+  { "invErf", pyOrfInvErf, METH_VARARGS, "the value of the inverse error function." },
+  { "normalCdf", pyOrfNormalCdf, METH_VARARGS, "the value of the standard normal cumulative distribution." },
+  { "normalInvCdf", pyOrfNormalInvCdf, METH_VARARGS, "the value of the inverse standard normal cumulative distribution." },
+// functions 1
+  { "fwdPrice", pyOrfFwdPrice, METH_VARARGS, "the forward price of an asset" },
+  { "digiBS", pyOrfDigiBS, METH_VARARGS, "price of a digital option in the Black-Scholes model." },
+  { "euroBS", pyOrfEuroBS, METH_VARARGS, "price of a European option in the Black-Scholes model." },
   {NULL, NULL, 0, NULL}
 };
 

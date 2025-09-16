@@ -1,5 +1,6 @@
 set(orflib_SOURCES 
-    empty.cpp 
+    math/stats/errorfunction.cpp
+    pricers/simplepricers.cpp
 )
 
 add_library(orflib STATIC ${orflib_SOURCES})

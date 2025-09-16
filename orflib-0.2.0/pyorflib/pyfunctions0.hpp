@@ -4,6 +4,8 @@
 */
 #include "pycpp.hpp"
 #include <orflib/defines.hpp>
+#include <orflib/math/stats/errorfunction.hpp>
+#include <orflib/math/stats/normaldistribution.hpp>
 #include <string>
 
 static 
@@ -26,6 +28,7 @@ PY_BEGIN;
   return asPyScalar(greet);
 PY_END;
 }
+
 
 static 
 PyObject* pyOrfOuterProd(PyObject* pyDummy, PyObject* pyArgs)
@@ -55,43 +58,65 @@ PY_BEGIN;
 PY_END;
 }
 
-static 
-PyObject* pyOrfPolyProd(PyObject* pyDummy, PyObject* pyArgs)
+
+static
+PyObject*  pyOrfErf(PyObject* pyDummy, PyObject* pyArgs)
 {
 PY_BEGIN;
-  PyObject* pyArg1(NULL);
-  PyObject* pyArg2(NULL);
-  if (!PyArg_ParseTuple(pyArgs, "OO", &pyArg1, &pyArg2))
+
+  PyObject* pyX(NULL);
+  if (!PyArg_ParseTuple(pyArgs, "O", &pyX))
     return NULL;
 
-  std::vector<double> vec1 = asDblVec(pyArg1);
-  std::vector<double> vec2 = asDblVec(pyArg2);
-  size_t nrow = vec1.size();
-  size_t ncol = vec2.size();
-  
-  if (vec1.empty() || vec2.empty()){
-    throw std::invalid_argument("Inavlid Argument:: Empty Input");
-  }
+  double x = asDouble(pyX);
+  return asPyScalar(orf::ErrorFunction::erf(x));
+PY_END;
+}
 
-  // allocate and compute the answer
-  std::vector<double> polyprod(nrow+ncol-1);
-  for (size_t i=0; i<nrow+ncol-1;++i){
-    polyprod[i]=0;
-  }
-  for (size_t i = 0; i < nrow; ++i) {
-	  for (size_t j = 0; j < ncol; ++j) {
-		  polyprod[i+j] += vec1[i] * vec2[j];
-	  };
-  }; 
 
-	size_t i=nrow+ncol-2;
-  while(i>0 and polyprod[i]==0){
-    printf("%d",i);
-    polyprod.pop_back();
-    --i;
-  }
-  
-  return asPyArray(polyprod);
+static
+PyObject*  pyOrfInvErf(PyObject* pyDummy, PyObject* pyArgs)
+{
+PY_BEGIN;
 
+  PyObject* pyX(NULL);
+  if (!PyArg_ParseTuple(pyArgs, "O", &pyX))
+    return NULL;
+
+  double x = asDouble(pyX);
+  return asPyScalar(orf::ErrorFunction::inverf(x));
+PY_END;
+}
+
+
+static
+PyObject*  pyOrfNormalCdf(PyObject* pyDummy, PyObject* pyArgs)
+{
+PY_BEGIN;
+
+  PyObject* pyX(NULL);
+  if (!PyArg_ParseTuple(pyArgs, "O", &pyX))
+    return NULL;
+
+  double x = asDouble(pyX);
+  orf::NormalDistribution f;
+
+  return asPyScalar(f.cdf(x));
+PY_END;
+}
+
+static
+PyObject*  pyOrfNormalInvCdf(PyObject* pyDummy, PyObject* pyArgs)
+{
+PY_BEGIN;
+
+  PyObject* pyX(NULL);
+  if (!PyArg_ParseTuple(pyArgs, "O", &pyX))
+    return NULL;
+
+  double x = asDouble(pyX);
+  orf::NormalDistribution f;
+
+  return asPyScalar(f.invcdf(x));
 PY_END;
 }
