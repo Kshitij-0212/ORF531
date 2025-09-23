@@ -23,6 +23,13 @@ double digitalOptionBS(int payoffType, double spot, double strike, double timeTo
 double europeanOptionBS(int payoffType, double spot, double strike, double timeToExp, 
                         double intRate, double divYield, double volatility);
 
+/** Price of a Knockout Forward*/
+double knockoutFwd(double spot, double strike, double KOLevel, double timeToExp, double timeToKO,
+                        double intRate, double divYield, double volatility);
+
+double quantoFwdPrice(double spot, double timeToExp, double intRate, 
+                double divYield, double volFX, double volAsset, double corr);
+
 END_NAMESPACE(orf)
 
 #endif // ORF_SIMPLEPRICERS_HPP

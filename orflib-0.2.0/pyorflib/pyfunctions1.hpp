@@ -93,3 +93,69 @@ PY_BEGIN;
   return asPyScalar(price);
 PY_END;
 }
+
+
+static
+PyObject*  pyOrfkoFwd(PyObject* pyDummy, PyObject* pyArgs)
+{
+PY_BEGIN;
+
+  PyObject* pySpot(NULL);
+  PyObject* pyStrike(NULL);
+  PyObject* pyKOLevel(NULL);
+  PyObject* pyTimeToExp(NULL);
+  PyObject* pyTimeToKO(NULL);
+  PyObject* pyIntRate(NULL);
+  PyObject* pyDivYield(NULL);
+  PyObject* pyVolatility(NULL);
+
+  if (!PyArg_ParseTuple(pyArgs, "OOOOOOOO", &pySpot, &pyStrike, &pyKOLevel,
+    &pyTimeToExp, &pyTimeToKO, &pyIntRate, &pyDivYield, &pyVolatility))
+    return NULL;
+
+
+  double spot = asDouble(pySpot);
+  double strike = asDouble(pyStrike);
+  double KOLevel = asDouble(pyKOLevel);
+  double timeToExp = asDouble(pyTimeToExp);
+  double timeToKO = asDouble(pyTimeToKO);
+  double intRate = asDouble(pyIntRate);
+  double divYield = asDouble(pyDivYield);
+  double vol = asDouble(pyVolatility);
+
+  double price = orf::knockoutFwd(spot, strike, KOLevel, timeToExp,  timeToKO, intRate, divYield, vol);
+
+  return asPyScalar(price);
+PY_END;
+}
+
+
+static
+PyObject*  pyOrfquantoFwd(PyObject* pyDummy, PyObject* pyArgs)
+{
+PY_BEGIN;
+  PyObject* pySpot(NULL);
+  PyObject* pyTimeToExp(NULL);
+  PyObject* pyIntRate(NULL);
+  PyObject* pyDivYield(NULL);
+  PyObject* pyVolFX(NULL);
+  PyObject* pyVolAsset(NULL);
+  PyObject* pyCorr(NULL);
+
+  if (!PyArg_ParseTuple(pyArgs, "OOOOOOO", &pySpot, &pyTimeToExp, &pyIntRate,
+    &pyDivYield, &pyVolFX, &pyVolAsset, &pyCorr))
+    return NULL;
+
+  double spot = asDouble(pySpot);
+  double timeToExp = asDouble(pyTimeToExp);
+  double intRate = asDouble(pyIntRate);
+  double divYield = asDouble(pyDivYield);
+  double volFX = asDouble(pyVolFX);
+  double volAsset = asDouble(pyVolAsset);
+  double corr = asDouble(pyCorr);
+
+  double fwd = orf::quantoFwdPrice(spot, timeToExp, intRate, divYield, volFX, volAsset, corr);
+
+  return asPyScalar(fwd);
+PY_END;
+}

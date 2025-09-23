@@ -147,3 +147,58 @@ def euroBS(payofftype, spot, strike, timetoexp, intrate, divyield, volatility):
         price of the option
     """
     return pyorflib.euroBS(payofftype, spot, strike, timetoexp, intrate, divyield, volatility)
+
+def koFwd(spot, strike, KOLevel, timetoexp, timetoKO, intrate, divyield, volatility):
+
+    """Price of a Knockout Forward.
+
+    Parameters
+    ----------
+    spot : double
+        asset spot price
+    strike : double
+        strike price
+    KOlevel : double
+        knockout level
+    timetoexp : double
+        time to expiration in years
+    timetoKO : double
+        time to knockout in years
+    intrate : double
+        interest rate, p.a. and c.c.
+    divyield : double    
+        asset dividend yield, p.a. and c.c.
+    volatility : double
+        asset return volatility
+
+    Returns
+    -------
+        price of the Knockout Forward
+    """
+    return pyorflib.koFwd(spot, strike, KOLevel, timetoexp, timetoKO, intrate, divyield, volatility)
+
+def qFwdPrice(spot, timetoexp, intrate, divyield, volFX, volAsset, corr):
+    """Price of a Quanto Forward.
+
+    Parameters
+    ----------
+    spot : double
+        asset spot price
+    timetoexp : double
+        time to expiration in years
+    intrate : double
+        interest rate, p.a. and c.c.
+    divyield : double    
+        asset dividend yield, p.a. and c.c.
+    volFX : double
+        volatility of the FX rate
+    volAsset : double
+        volatility of the asset
+    corr : double
+        correlation between the asset and the FX rate
+
+    Returns
+    -------
+        price of the Quanto Forward
+    """
+    return pyorflib.qFwdPrice(spot, timetoexp, intrate, divyield, volFX, volAsset, corr)

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/home/kshitij/ORF531/orflib-0.1.0/pyorflib/orflib/pyorflib.so"
+			"path" : "/home/kshitij/ORF531/orflib-0.2.0/pyorflib/orflib/pyorflib.so"
 		}
 	],
 	"backtrace" : 1,
@@ -80,7 +80,7 @@
 			[
 				{
 					"backtrace" : 5,
-					"path" : "/home/kshitij/ORF531/orflib-0.1.0/pyorflib/.."
+					"path" : "/home/kshitij/ORF531/orflib-0.2.0/pyorflib/.."
 				},
 				{
 					"backtrace" : 5,
@@ -128,7 +128,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/home/kshitij/ORF531/orflib-0.1.0/lib/liborflib-gd.a",
+				"fragment" : "/home/kshitij/ORF531/orflib-0.2.0/lib/liborflib-gd.a",
 				"role" : "libraries"
 			},
 			{

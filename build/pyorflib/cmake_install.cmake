@@ -1,4 +1,4 @@
-# Install script for directory: /home/kshitij/ORF531/orflib-0.1.0/pyorflib
+# Install script for directory: /home/kshitij/ORF531/orflib-0.2.0/pyorflib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

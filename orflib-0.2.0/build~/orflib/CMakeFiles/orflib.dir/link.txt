@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/kshitij/ORF531/orflib-0.2.0/lib/liborflib.a CMakeFiles/orflib.dir/math/stats/errorfunction.cpp.o CMakeFiles/orflib.dir/pricers/simplepricers.cpp.o
+/usr/bin/ranlib /home/kshitij/ORF531/orflib-0.2.0/lib/liborflib.a

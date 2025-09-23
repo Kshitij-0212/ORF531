@@ -35,6 +35,8 @@ static PyMethodDef PyOrflibMethods[] =
   { "fwdPrice", pyOrfFwdPrice, METH_VARARGS, "the forward price of an asset" },
   { "digiBS", pyOrfDigiBS, METH_VARARGS, "price of a digital option in the Black-Scholes model." },
   { "euroBS", pyOrfEuroBS, METH_VARARGS, "price of a European option in the Black-Scholes model." },
+  { "koFwd", pyOrfkoFwd, METH_VARARGS, "price of a Knockout Forward." },
+  { "qFwdPrice", pyOrfquantoFwd, METH_VARARGS, "price of a Quanto Forward." },
   {NULL, NULL, 0, NULL}
 };
 

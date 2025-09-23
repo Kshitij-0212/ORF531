@@ -221,7 +221,7 @@ orflib_BINARY_DIR:STATIC=/home/kshitij/ORF531/build
 orflib_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-orflib_SOURCE_DIR:STATIC=/home/kshitij/ORF531/orflib-0.1.0
+orflib_SOURCE_DIR:STATIC=/home/kshitij/ORF531/orflib-0.2.0
 
 
 ########################
@@ -306,7 +306,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/kshitij/ORF531/orflib-0.1.0
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/kshitij/ORF531/orflib-0.2.0
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
