@@ -1,0 +1,1 @@
+/usr/bin/g++-14 -fPIC -Wl,--dependency-file=CMakeFiles/pyorflib.dir/link.d -shared -Wl,-soname,pyorflib.so -o /home/kshitij/ORF531/orflib-0.3.0/pyorflib/orflib/pyorflib.so CMakeFiles/pyorflib.dir/pymodule.o  -Wl,-rpath,/home/kshitij/miniconda3/envs/orf531/lib /liborflib.a /home/kshitij/miniconda3/envs/orf531/lib/libpython3.12.so
