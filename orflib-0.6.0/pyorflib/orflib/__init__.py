@@ -665,3 +665,37 @@ def euroBSMC(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatil
         StdErr : Monte Carlo standard error
     """
     return pyorflib.euroBSMC(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, mcparams, npaths)
+
+def digiBSMC(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, mcparams, npaths):
+    """Price and standard error of a European digital option in the Black-Scholes model using Monte Carlo.
+
+    Parameters
+    ----------
+    payofftype : {1, -1}
+        1 for call, -1 for put
+    strike : double
+        strike price
+    timetoexp : double
+        time to expiration in years
+    spot : double
+        asset spot price
+    discountcrv : str
+        discount yield curve name
+    divyield : double
+        asset dividend yield, p.a. and c.c.
+    volatility : str or double
+        volatility term structure name or constant volatility value
+    mcparams : dictionary
+        URNGTYPE : 'MINSTDRAND', 'MT19937', 'RANLUX3', 'RANLUX4'
+        PATHGENTYPE : 'EULER'
+        CONTROLVARTYPE : 'ANTITHETIC', 'NONE'
+    npaths : int
+        number of Monte Carlo paths
+
+    Returns
+    -------
+    dictionary
+        Mean : Monte Carlo mean price
+        StdErr : Monte Carlo standard error
+    """
+    return pyorflib.digiBSMC(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, mcparams, npaths)

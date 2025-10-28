@@ -63,6 +63,7 @@ static PyMethodDef PyOrflibMethods[] =
   { "cdsPV", pyOrfCDSPV, METH_VARARGS, "present value of a CDS." },
 // functions 3
   { "euroBSMC", pyOrfEuroBSMC, METH_VARARGS, "price of a European option in the Black-Scholes model using Monte Carlo." },
+  { "digiBSMC", pyOrfDigiBSMC, METH_VARARGS, "price of a Digital option in the Black-Scholes model using Monte Carlo." },
   {NULL, NULL, 0, NULL}
 };
 

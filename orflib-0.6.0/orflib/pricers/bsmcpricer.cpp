@@ -13,7 +13,7 @@ BEGIN_NAMESPACE(orf)
 BsMcPricer::BsMcPricer(SPtrProduct prod,
                        SPtrYieldCurve discountCurve,
                        double divYield,
-                       double volatility,
+                       SPtrVolatilityTermStructure volatility,
                        double spot,
                        McParams mcparams)
 : prod_(prod), discyc_(discountCurve), divyld_(divYield), vol_(volatility),
@@ -52,7 +52,8 @@ spot_(spot), mcparams_(mcparams)
   stdevs_.resize(fixtimes.size());
   for (size_t i = 0; i < fixtimes.size(); ++i) {
     double t2 = fixtimes[i];
-    double var = vol_ * vol_ * (t2 - t1);
+    double fwdvol = vol_->fwdVol(t1, t2);
+    double var = fwdvol * fwdvol * (t2 - t1);
     stdevs_[i] = sqrt(var);
     double fwdrate = discyc_->fwdRate(t1, t2);
     // risk free rate less yield plus convexity adjustment

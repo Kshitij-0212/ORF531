@@ -8,6 +8,7 @@
 
 #include <orflib/products/product.hpp>
 #include <orflib/market/yieldcurve.hpp>
+#include <orflib/market/volatilitytermstructure.hpp>
 #include <orflib/methods/montecarlo/mcparams.hpp>
 #include <orflib/methods/montecarlo/pathgenerator.hpp>
 #include <orflib/methods/montecarlo/eulerpathgenerator.hpp>
@@ -24,7 +25,7 @@ public:
   BsMcPricer(SPtrProduct prod,
              SPtrYieldCurve discountYieldCurve,
              double divYield,
-             double volatility,
+             SPtrVolatilityTermStructure volatility,
              double spot,
              McParams mcparams);
 
@@ -45,8 +46,8 @@ protected:
 private:
   SPtrProduct prod_;      // pointer to the product
   SPtrYieldCurve discyc_; // pointer to the discount curve
-  double divyld_;         // the constant dividend yield   
-  double vol_;            // the constant volatility
+  double divyld_;         // the constant dividend yield
+  SPtrVolatilityTermStructure vol_; // the constant volatility
   double spot_;           // the initial spot
   McParams mcparams_;     // the Monte Carlo parameters
 
