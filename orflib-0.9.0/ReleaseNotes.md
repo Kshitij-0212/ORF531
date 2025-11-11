@@ -1,6 +1,21 @@
 ORFLIB Release Notes
 ====================
 
+
+VERSION 0.9.0
+-------------
+
+### Additions
+
+1. New file `orflib/products/americancallput.hpp`.  
+	Definition of the class AmericanCallPut.
+
+### Modifications
+
+1. In files `pyorflib/pyfunctions4.hpp` and `pyorflib/orflib/__init__.py`.  
+	Definition and registration of the Python function orf.amerBSPDE.
+
+
 VERSION 0.8.0
 -------------
 

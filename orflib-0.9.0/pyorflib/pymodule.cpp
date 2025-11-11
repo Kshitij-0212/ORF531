@@ -70,7 +70,8 @@ static PyMethodDef PyOrflibMethods[] =
   { "asianBasketBSMC", pyOrfAsianBasketBSMC, METH_VARARGS, "price of a Asian basket option in the Black-Scholes model using Monte Carlo." },
   // functions 4
   { "euroBSPDE", pyOrfEuroBSPDE, METH_VARARGS, "price of a European option in the Black-Scholes model using PDE." },
-  { "digiBSPDE", pyOrfDigiBSPDE, METH_VARARGS, "price of a Digital option in the Black-Scholes model using PDE." },
+  { "amerBSPDE", pyOrfAmerBSPDE, METH_VARARGS, "price of an American option in the Black-Scholes model using PDE." },
+  { "bermBSPDE", pyOrfBermBSPDE, METH_VARARGS, "price of a Bermudan option in the Black-Scholes model using PDE." },
   {NULL, NULL, 0, NULL}
 };
 

@@ -21,7 +21,7 @@ public:
               SPtrYieldCurve discountYieldCurve,
               double spot,
               double divyield,
-              SPtrVolatilityTermStructure vol,
+              double vol,
               Pde1DResults& results,
               bool storeAllResults = false)
   : PdeBase(product), results_(results), storeAllResults_(storeAllResults)
@@ -33,7 +33,6 @@ public:
     spaccrycs_.push_back(discountYieldCurve);
     divyields_.push_back(divyield);
     vols_.push_back(vol);
-
   }
 
   /** Dtor */

@@ -44,7 +44,7 @@ void PdeBase::solve(PdeParams const& params)
     for (size_t i = 0; i < nSteps_ - 1; ++i) {
     double T1 = timesteps_[i];
     double T2 = timesteps_[i + 1];
-    fwdVols(i, j) = vols_[j]->fwdVol(T1, T2);
+    fwdVols(i, j) = vols_[j];
     }
   }
 
@@ -91,7 +91,7 @@ void PdeBase::initGrid(double T, PdeParams const& params)
     // compute forward to maturity
     double rate = spaccrycs_[i]->spotRate(T);
     double forward = S0 * exp((rate - divyields_[i]) * T);
-    double vol = vols_[i]->spotVol(T);
+    double vol = vols_[i];
 
     // initialize the coordinate transform for this axis
     grax.coordinateChange->init(params);

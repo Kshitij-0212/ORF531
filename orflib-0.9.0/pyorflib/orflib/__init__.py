@@ -779,7 +779,7 @@ def euroBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volati
         discount yield curve name
     divyield : double    
         asset dividend yield, p.a. and c.c.
-    volatility : double or sptrVolatilityTermStructure
+    volatility : double
         asset return volatility
     pdeparams : dictionary
         NTIMESTEPS : (int) number of time steps
@@ -804,8 +804,8 @@ def euroBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volati
     return pyorflib.euroBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults)
 
 
-def digiBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults=False):
-    """Price of a European option in the Black-Scholes model using finite difference PDE.
+def amerBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults=False):
+    """Price of an American option in the Black-Scholes model using finite difference PDE.
 
     Parameters
     ----------
@@ -821,7 +821,7 @@ def digiBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volati
         discount yield curve name
     divyield : double    
         asset dividend yield, p.a. and c.c.
-    volatility : double or sptrVolatilityTermStructure
+    volatility : double
         asset return volatility
     pdeparams : dictionary
         NTIMESTEPS : (int) number of time steps
@@ -843,4 +843,46 @@ def digiBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volati
     -----
     The keys `Times`, `Spots` and `Values` are available only if `allresults`==True.
     """
-    return pyorflib.digiBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults)
+    return pyorflib.amerBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults)
+
+
+def bermBSPDE(payofftype, strike, timesToExer, spot, discountcrv, divyield, volatility, pdeparams, allresults=False):
+    """Price of a Bermudan option in the Black-Scholes model using finite difference PDE.
+
+    Parameters
+    ----------
+    payofftype : {1, -1}
+        1 for call, -1 for put
+    strike : double
+        strike price
+    timesToExer : list of double
+        times to exercise in years
+    spot : double
+        asset spot price
+    discountcrv : str
+        discount yield curve name
+    divyield : double    
+        asset dividend yield, p.a. and c.c.
+    volatility : double
+        asset return volatility
+    pdeparams : dictionary
+        NTIMESTEPS : (int) number of time steps
+        NSPOTNODES : (int) number of spot nodes
+        NSTDDEVS : (double) number of standard deviations for the spot range
+        THETA : (double) scheme implicitness
+    allresults : bool
+        FALSE for price only; TRUE for the full grid of results
+    
+    Returns
+    -------
+    dictionary
+        Price : PDE price
+        Times : 1D array with times
+        Spots : 1D array with spots
+        Values : 2D array with option values
+
+    Notes
+    -----
+    The keys `Times`, `Spots` and `Values` are available only if `allresults`==True.
+    """
+    return pyorflib.bermBSPDE(payofftype, strike, timesToExer, spot, discountcrv, divyield, volatility, pdeparams, allresults)

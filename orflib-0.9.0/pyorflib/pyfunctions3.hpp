@@ -6,7 +6,6 @@
 
 #include <orflib/defines.hpp>
 #include <orflib/products/europeancallput.hpp>
-#include <orflib/products/digitalcallput.hpp>
 #include <orflib/products/asianbasketcallput.hpp>
 #include <orflib/pricers/bsmcpricer.hpp>
 #include <orflib/pricers/multiassetbsmcpricer.hpp>

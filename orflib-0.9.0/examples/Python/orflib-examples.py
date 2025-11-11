@@ -214,3 +214,22 @@ eurobs = orf.euroBS(payofftype = 1, strike = 100, timetoexp = 1.0, spot = 100,
                    intrate = orf.spotRate(yc, 1.0), divyield = 0.02, volatility = 0.4)[0]
 
 print(f'BSPrice={eurobs:0.4f}')
+
+print('=================')
+print('American option using Black-Scholes PDE')
+pdeparams = {'NTIMESTEPS': 800, 'NSPOTNODES': 800, 'NSTDDEVS': 4, 'THETA': 0.5}
+paytype = 1
+opttype = 'call' if paytype == 1 else 'put'
+
+amerpde = orf.amerBSPDE(payofftype = paytype, strike = 100, timetoexp = 1.0, spot = 100,
+                        discountcrv =  yc, divyield = 0.02, volatility = 0.4, pdeparams = pdeparams)
+
+print(f'NTIMESTEPS={pdeparams["NTIMESTEPS"]} NSPOTNODES={pdeparams["NSPOTNODES"]} NSTDDEVS={pdeparams["NSTDDEVS"]} THETA={pdeparams["THETA"]}\n')
+print(f'American {opttype} option:')
+print(f'Price={amerpde["Price"]:0.4f}')
+
+# compare with corresponding European
+europde = orf.euroBSPDE(payofftype = paytype, strike = 100, timetoexp = 1.0, spot = 100,
+                        discountcrv =  yc, divyield = 0.02, volatility = 0.4, pdeparams = pdeparams)
+print(f'European {opttype} option:')
+print(f'Price={europde["Price"]:0.4f}')

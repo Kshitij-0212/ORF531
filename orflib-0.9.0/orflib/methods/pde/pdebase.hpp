@@ -34,7 +34,7 @@ public:
     std::vector<double> spots,
     std::vector<SPtrYieldCurve> const & accrualYieldCurves,
     std::vector<double> divyields,
-    std::vector<SPtrVolatilityTermStructure> vols)
+    std::vector<double> vols)
     : spprod_(product), spdiscyc_(discountYieldCurve), spots_(spots),
     spaccrycs_(accrualYieldCurves), divyields_(divyields), vols_(vols)
   {
@@ -105,7 +105,7 @@ protected:
   std::vector<double> spots_;                // the asset spots
   std::vector<SPtrYieldCurve> spaccrycs_;    // the accrual yield curve (used for forward calculation)
   std::vector<double> divyields_;            // the dividend yields for each asset
-  std::vector<SPtrVolatilityTermStructure> vols_;                 // the volatility for each asset
+  std::vector<double> vols_;                 // the volatility for each asset
 
   std::vector<GridAxis> gridAxes_;  // the grid axes
   std::vector<double> spotAxis_;
