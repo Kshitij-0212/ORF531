@@ -233,3 +233,37 @@ europde = orf.euroBSPDE(payofftype = paytype, strike = 100, timetoexp = 1.0, spo
                         discountcrv =  yc, divyield = 0.02, volatility = 0.4, pdeparams = pdeparams)
 print(f'European {opttype} option:')
 print(f'Price={europde["Price"]:0.4f}')
+
+#%%
+# function group 5
+print('=========================')
+print('Portfolio return and risk')
+
+assetrets = [0.10, 0.115, 0.08, 0.06]
+assetvols = [0.20, 0.30, 0.22, 0.18]
+correlmat = np.array([
+    [1.0,  0.10, 0.20, 0.30],
+    [0.10,  1.0, 0.25, 0.35],
+    [0.20, 0.25,  1.0, 0.15],
+    [0.30, 0.35, 0.15,  1.0]])
+
+rfreerate = 0.04
+
+mvpwts = orf.mvpWghts(assetrets, assetvols, correlmat)
+
+mvprsk = orf.ptRisk(mvpwts, assetrets, assetvols, correlmat)
+
+mktwts = orf.mktWghts(assetrets, assetvols, correlmat, rfreerate)
+
+mktrsk = orf.mktRisk(assetrets, assetvols, correlmat, rfreerate)
+
+with np.printoptions(precision=4, suppress=True):
+     print('MVP Weights =', mvpwts)
+print(f'MVP Return = {mvprsk['Mean']:0.4f}')
+print(f'MVP Risk = {mvprsk['StdDev']:0.4f}')
+
+with np.printoptions(precision=4, suppress=True):
+     print('\nMarket Weights =', mktwts)
+print(f'Market Return = {mktrsk['Mean']:0.4f}')
+print(f'Market Risk = {mktrsk['StdDev']:0.4f}')
+print(f'Market Lambda = {mktrsk['Lambda']:0.4f}')

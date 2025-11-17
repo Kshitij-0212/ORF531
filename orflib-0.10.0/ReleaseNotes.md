@@ -1,6 +1,21 @@
 ORFLIB Release Notes
 ====================
 
+VERSION 0.10.0
+-------------
+
+### Additions
+
+1. New files `orflib/pricers/ptpricers.hpp` and `ptpricers.cpp`.  
+	They contain portfolio related functions.
+  
+2. New file `pyqflib/pyfunctions5.hpp` and additions to`pyqflib/qflib/__init__.py`.  
+	implementation and registration of the following Python callable functions:  
+   orf.ptRisk             (portfolio expected return and risk)  
+   orf.mvpWghts           (mvp weights)  
+   orf.mktWghts           (CAPM market portfolio weights)  
+   orf.mktRisk            (CAPM market portfolio mean return and standard deviation)  
+
 
 VERSION 0.9.0
 -------------

@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orflib"
-version = "0.9.0"
+version = "0.10.0"
 description = "orflib quant library"
 maintainers = [{name = "Michael G Sotiropoulos", email = "msotirop@princeton.edu"}]
 dependencies = ["numpy"]

@@ -10,6 +10,7 @@
 #include "pyfunctions2.hpp"
 #include "pyfunctions3.hpp"
 #include "pyfunctions4.hpp"
+#include "pyfunctions5.hpp"
 
 static PyMethodDef PyOrflibMethods[] = 
 {
@@ -71,7 +72,11 @@ static PyMethodDef PyOrflibMethods[] =
   // functions 4
   { "euroBSPDE", pyOrfEuroBSPDE, METH_VARARGS, "price of a European option in the Black-Scholes model using PDE." },
   { "amerBSPDE", pyOrfAmerBSPDE, METH_VARARGS, "price of an American option in the Black-Scholes model using PDE." },
-  { "bermBSPDE", pyOrfBermBSPDE, METH_VARARGS, "price of a Bermudan option in the Black-Scholes model using PDE." },
+  // functions 5
+  { "ptRisk", pyOrfPtRisk, METH_VARARGS, "mean return and standard deviation of a portfolio" },
+  { "mvpWghts", pyOrfMvpWghts, METH_VARARGS, "weights of the minimum variance portfolio" },
+  { "mktRisk", pyOrfMktRisk, METH_VARARGS, "mean return, standard deviation, and lambda of the market portfolio" },
+  { "mktWghts", pyOrfMktWghts, METH_VARARGS, "weights of the market portfolio" },
   {NULL, NULL, 0, NULL}
 };
 

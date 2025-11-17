@@ -845,44 +845,95 @@ def amerBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volati
     """
     return pyorflib.amerBSPDE(payofftype, strike, timetoexp, spot, discountcrv, divyield, volatility, pdeparams, allresults)
 
+###################
+# function group 5
 
-def bermBSPDE(payofftype, strike, timesToExer, spot, discountcrv, divyield, volatility, pdeparams, allresults=False):
-    """Price of a Bermudan option in the Black-Scholes model using finite difference PDE.
+def ptRisk(ptwghts, assetrets, assetvols, correlmat):
+    """Mean and standard deviation of portfolio return.
 
     Parameters
     ----------
-    payofftype : {1, -1}
-        1 for call, -1 for put
-    strike : double
-        strike price
-    timesToExer : list of double
-        times to exercise in years
-    spot : double
-        asset spot price
-    discountcrv : str
-        discount yield curve name
-    divyield : double    
-        asset dividend yield, p.a. and c.c.
-    volatility : double
-        asset return volatility
-    pdeparams : dictionary
-        NTIMESTEPS : (int) number of time steps
-        NSPOTNODES : (int) number of spot nodes
-        NSTDDEVS : (double) number of standard deviations for the spot range
-        THETA : (double) scheme implicitness
-    allresults : bool
-        FALSE for price only; TRUE for the full grid of results
-    
+    ptwghts : list(double) or 1D numpy array
+        portfolio weights for each contained asset
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+
     Returns
     -------
     dictionary
-        Price : PDE price
-        Times : 1D array with times
-        Spots : 1D array with spots
-        Values : 2D array with option values
-
-    Notes
-    -----
-    The keys `Times`, `Spots` and `Values` are available only if `allresults`==True.
+        Mean : mean porfolio return
+        StdDev : standard deviation of portfolio return
     """
-    return pyorflib.bermBSPDE(payofftype, strike, timesToExer, spot, discountcrv, divyield, volatility, pdeparams, allresults)
+    return pyorflib.ptRisk(ptwghts, assetrets, assetvols, correlmat)
+
+
+def mvpWghts(assetrets, assetvols, correlmat):
+    """Weights of minimum variance portfolio.
+
+    Parameters
+    ----------
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+
+    Returns
+    -------
+    1D numpy array
+        the minimum variance portfolio weights
+    """
+    return pyorflib.mvpWghts(assetrets, assetvols, correlmat)
+
+
+def mktRisk(ptwghts, assetrets, assetvols, correlmat):
+    """Mean, standard deviation and lambda of the market return in the CAPM model.
+
+    Parameters
+    ----------
+    ptwghts : list(double) or 1D numpy array
+        portfolio weights for each contained asset
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+    rfreerate : double
+        risk free rate
+
+    Returns
+    -------
+    dictionary
+        Mean : mean porfolio return
+        StdDev : standard deviation of portfolio returns
+        Lambda : lambda of the market portfolio
+    """
+    return pyorflib.mktRisk(ptwghts, assetrets, assetvols, correlmat)
+
+
+def mktWghts(assetrets, assetvols, correlmat, rfreerate):
+    """Weights of the market portfolio in the CAPM model.
+
+    Parameters
+    ----------
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+    rfreerate : double
+        risk free rate
+
+    Returns
+    -------
+    1D numpy array
+        the market portfolio weights
+    """
+    return pyorflib.mktWghts(assetrets, assetvols, correlmat, rfreerate)

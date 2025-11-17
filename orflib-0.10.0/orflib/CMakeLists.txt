@@ -11,6 +11,7 @@ set(orflib_SOURCES
     pricers/simplepricers.cpp
     pricers/bsmcpricer.cpp
     pricers/multiassetbsmcpricer.cpp
+    pricers/ptpricers.cpp
     market/market.cpp
     market/yieldcurve.cpp
     market/volatilitytermstructure.cpp
