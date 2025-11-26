@@ -227,4 +227,49 @@ orf::Vector cdsPV(SPtrYieldCurve sprfyc, double credSprd, double cdsRate,
   return ret;
 }
 
+/** Price and Greeks of a European option in the Black-Scholes model*/
+Vector europeanOptionBS(int payoffType, double spot, double strike, double timeToExp, 
+                        double intRate, double divYield, double volatility)
+{
+  ORF_ASSERT(payoffType == 1 || payoffType == -1, "payoffType must be 1 or -1");
+  ORF_ASSERT(strike >= 0.0, "strike must be non-negative");
+  ORF_ASSERT(volatility >= 0.0, "volatility must be non-negative");
+
+  double phi = payoffType;
+  double fwd = fwdPrice(spot, timeToExp, intRate, divYield);
+  double sigT = volatility * sqrt(timeToExp);
+  double d1 = log(fwd / strike) / sigT + 0.5 * sigT;
+  double d2 = d1 - sigT;
+  NormalDistribution normal;
+  double epsilon = 1.0e-012;  // a very small hard-coded number
+
+  // precompute common quantities
+  double df = exp(-intRate * timeToExp);
+  double qf = exp(-divYield * timeToExp);
+  double nd1 = normal.cdf(phi * d1);
+  double nd2 = normal.cdf(phi * d2);
+  double nprd1 = normal.pdf(d1);      // the normal density     
+  double sqrtT = sqrt(timeToExp);
+
+  // price and Greeks
+  double price = phi * df * (fwd * nd1 - strike * nd2);
+  double delta = phi * qf * nd1;
+  double gamma = qf * nprd1 / (spot * volatility * sqrtT);
+  gamma = sqrtT < epsilon ? 0.0 : gamma;
+  double theta = -qf * nprd1 * spot * volatility / (2.0 * sqrtT);
+  theta += phi * divYield * qf * spot * nd1;
+  theta -= phi * intRate * df * strike * nd2;
+  theta = sqrtT < epsilon ? 0.0 : theta;
+  double vega = qf * sqrtT * spot * nprd1;
+
+  Vector vec(5);
+  vec[0] = price;
+  vec[1] = delta;
+  vec[2] = gamma;
+  vec[3] = theta;
+  vec[4] = vega;
+
+  return vec;
+}
+
 END_NAMESPACE(orf)

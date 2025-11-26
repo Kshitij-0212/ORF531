@@ -77,6 +77,11 @@ static PyMethodDef PyOrflibMethods[] =
   { "mvpWghts", pyOrfMvpWghts, METH_VARARGS, "weights of the minimum variance portfolio" },
   { "mktRisk", pyOrfMktRisk, METH_VARARGS, "mean return, standard deviation, and lambda of the market portfolio" },
   { "mktWghts", pyOrfMktWghts, METH_VARARGS, "weights of the market portfolio" },
+  { "meanVarWghts", pyOrfMeanVarWghts, METH_VARARGS, "weights of the mean variance efficient portfolio" },
+  { "meanVarFront", pyOrfMeanVarFront, METH_VARARGS, "mean variance efficient frontier" },
+
+
+
   {NULL, NULL, 0, NULL}
 };
 

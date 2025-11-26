@@ -116,3 +116,64 @@ PyObject* pyOrfMktWghts(PyObject* pyDummy, PyObject* pyArgs)
 
   PY_END;
 }
+
+
+static
+PyObject* pyOrfMeanVarWghts(PyObject* pyDummy, PyObject* pyArgs)
+{
+  PY_BEGIN;
+
+  PyObject* pyAssetRets(NULL);
+  PyObject* pyAssetVols(NULL);
+  PyObject* pyCorrelMat(NULL);
+  PyObject* pyLambda(NULL);
+
+
+  if (!PyArg_ParseTuple(pyArgs, "OOOO", &pyAssetRets, &pyAssetVols, &pyCorrelMat, &pyLambda))
+    return NULL;
+
+  orf::Vector assetRets = asVector(pyAssetRets);
+  orf::Vector assetVols = asVector(pyAssetVols);
+  orf::Matrix correlMat = asMatrix(pyCorrelMat);
+  double lambda = asDouble(pyLambda);
+
+  orf::Vector wghts = orf::meanVarWeights(assetRets, assetVols, correlMat, lambda);
+
+  return asNumpy(wghts);
+
+  PY_END;
+}
+
+static
+PyObject* pyOrfMeanVarFront(PyObject* pyDummy, PyObject* pyArgs)
+{
+  PY_BEGIN;
+
+  PyObject* pyAssetRets(NULL);
+  PyObject* pyAssetVols(NULL);
+  PyObject* pyCorrelMat(NULL);
+  PyObject* pyLambdaMax(NULL);
+  PyObject* pyNLambdaSteps(NULL);
+
+
+  if (!PyArg_ParseTuple(pyArgs, "OOOOO", &pyAssetRets, &pyAssetVols, &pyCorrelMat, &pyLambdaMax, &pyNLambdaSteps))
+    return NULL;
+
+  orf::Vector assetRets = asVector(pyAssetRets);
+  orf::Vector assetVols = asVector(pyAssetVols);
+  orf::Matrix correlMat = asMatrix(pyCorrelMat);
+  double lambdaMax = asDouble(pyLambdaMax);
+  double nLambdaSteps = asDouble(pyNLambdaSteps);
+
+std::tuple<std::vector<double>, std::vector<double>, std::vector<double>>  answer = orf::meanVarFront(assetRets, assetVols, correlMat, lambdaMax, nLambdaSteps);
+
+PyObject* ret = PyDict_New();
+
+PyDict_SetItem(ret, asPyScalar("Mean"),    asPyArray(std::get<0>(answer)));
+PyDict_SetItem(ret, asPyScalar("StdDev"),  asPyArray(std::get<1>(answer)));
+PyDict_SetItem(ret, asPyScalar("Lambdas"), asPyArray(std::get<2>(answer)));
+
+return ret;
+
+PY_END;
+}

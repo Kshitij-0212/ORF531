@@ -115,4 +115,55 @@ mktRisk(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMa
   return std::make_tuple(meanret, stdevret, lambda_mkt);
 }
 
+/** The weights of the efficient portfolio */
+Vector meanVarWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double lambda)
+{
+  size_t nassets = validatePtInputs(assetRets, assetVols, correlMat);
+  ORF_ASSERT(lambda >= 0, "must have non-negative risk aversion!");
+  Vector iota(nassets, fill::ones);
+  Matrix SigmaInv = correlMat;
+  // convert to covariance matrix
+  for (size_t i = 0; i < SigmaInv.n_rows; ++i)
+    for (size_t j = 0; j < SigmaInv.n_cols; ++j)
+      SigmaInv(i, j) *= assetVols(i) * assetVols(j);
+
+  SigmaInv = SigmaInv.i();   // invert in place
+  double c = dot(iota, SigmaInv*iota);
+  double a = dot(iota,SigmaInv*assetRets);
+  Vector wghts = SigmaInv*iota/c + lambda * (SigmaInv*assetRets - (a/c) * SigmaInv *iota);
+  return wghts;
+}
+
+std::tuple<std::vector<double>, std::vector<double>, std::vector<double>> meanVarFront(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double lambdaMax, double nLambdaSteps)
+{
+  size_t nassets = validatePtInputs(assetRets, assetVols, correlMat);
+  ORF_ASSERT(lambdaMax >= 0, "must have non-negative maximum risk aversion!");
+  ORF_ASSERT(nLambdaSteps >= 0, "must have non-negative maximum risk aversion!");
+
+  Vector iota(nLambdaSteps, fill::ones);
+  std::vector<double> means(nLambdaSteps+1);
+  std::vector<double> stds(nLambdaSteps+1);
+  std::vector<double> lambdas(nLambdaSteps+1);
+
+  Matrix SigmaInv = correlMat;
+  // convert to covariance matrix
+  for (size_t i = 0; i < SigmaInv.n_rows; ++i)
+    for (size_t j = 0; j < SigmaInv.n_cols; ++j)
+      SigmaInv(i, j) *= assetVols(i) * assetVols(j);
+
+  SigmaInv = SigmaInv.i();   // invert in place
+
+  for(double i=0; i<=nLambdaSteps; i+=1){
+    double lambda = i*lambdaMax/nLambdaSteps;
+    Vector wghts = meanVarWeights(assetRets, assetVols, correlMat, lambda);
+    auto risk = ptRisk(wghts, assetRets, assetVols, correlMat);
+    means[i] = std::get<0>(risk);  
+    stds[i]  = std::get<1>(risk);  
+    lambdas[i] = lambda;
+  }
+
+  return std::make_tuple(means, stds, lambdas);
+}
+
+
 END_NAMESPACE(orf)

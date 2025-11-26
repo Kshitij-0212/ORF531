@@ -26,4 +26,9 @@ Vector mktWeights(Vector const& assetRets, Vector const& assetVols, Matrix const
 std::tuple<double, double, double> 
 mktRisk(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double rfreeRate);
 
+/** Weights of the efficient market portfolio */
+Vector meanVarWeights(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double lambda);
+
+std::tuple<std::vector<double>, std::vector<double>, std::vector<double>> meanVarFront(Vector const& assetRets, Vector const& assetVols, Matrix const& correlMat, double lambdaMax, double nLambdaSteps);
+
 END_NAMESPACE(orf)

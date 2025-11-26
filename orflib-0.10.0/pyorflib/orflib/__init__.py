@@ -891,7 +891,7 @@ def mvpWghts(assetrets, assetvols, correlmat):
     return pyorflib.mvpWghts(assetrets, assetvols, correlmat)
 
 
-def mktRisk(ptwghts, assetrets, assetvols, correlmat):
+def mktRisk(assetrets, assetvols, correlmat, rfreerate):
     """Mean, standard deviation and lambda of the market return in the CAPM model.
 
     Parameters
@@ -914,7 +914,7 @@ def mktRisk(ptwghts, assetrets, assetvols, correlmat):
         StdDev : standard deviation of portfolio returns
         Lambda : lambda of the market portfolio
     """
-    return pyorflib.mktRisk(ptwghts, assetrets, assetvols, correlmat)
+    return pyorflib.mktRisk(assetrets, assetvols, correlmat, rfreerate)
 
 
 def mktWghts(assetrets, assetvols, correlmat, rfreerate):
@@ -937,3 +937,47 @@ def mktWghts(assetrets, assetvols, correlmat, rfreerate):
         the market portfolio weights
     """
     return pyorflib.mktWghts(assetrets, assetvols, correlmat, rfreerate)
+
+def meanVarWghts(assetrets, assetvols, correlmat, lambda_):
+    """Weights of minimum variance portfolio.
+
+    Parameters
+    ----------
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+    lambda_ : double
+        risk aversion
+
+    Returns
+    -------
+    1D numpy array
+        the minimum variance portfolio weights
+    """
+    return pyorflib.meanVarWghts(assetrets, assetvols, correlmat, lambda_)
+
+def meanVarFront(assetrets, assetvols, correlmat, lambdamax, nlambdasteps):
+    """Weights of minimum variance portfolio.
+
+    Parameters
+    ----------
+    assetrets :  list(double) or 1D numpy array
+        expected asset returns
+    assetvols : list(double) or 1D numpy array
+        asset return volatilities
+    correlmat : 2D numpy array
+        asset return correlation matrix
+    lambdamax : double
+        maximum risk aversion
+    nlambdasteps: double
+        number of points
+
+    Returns
+    -------
+    dictionary
+        dictionary with means, stds, lambdas
+    """
+    return pyorflib.meanVarFront(assetrets, assetvols, correlmat, lambdamax, nlambdasteps)

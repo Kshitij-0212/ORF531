@@ -65,5 +65,8 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")       # GCC on Linux
         # /usr/lib/x86_64-linux-gnu/blas/libblas.a 
         # libgfortran.so.4 
         # libquadmath.so.0
+        #/usr/lib/aarch64-linux-gnu/liblapack.so
+        #/usr/lib/aarch64-linux-gnu/libblas.so
+
     )
 endif()
